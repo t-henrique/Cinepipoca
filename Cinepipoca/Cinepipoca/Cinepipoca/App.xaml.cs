@@ -4,6 +4,9 @@ using Cinepipoca.ViewModels;
 using Cinepipoca.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System;
+using Cinepipoca.Interfaces;
+using Cinepipoca.Repositories;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Cinepipoca
@@ -24,12 +27,20 @@ namespace Cinepipoca
             InitializeComponent();
 
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
+
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+
+            InitServices(containerRegistry);
+        }
+
+        private void InitServices(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterSingleton<IMoviesRepository, MoviesRepository>();
         }
     }
 }
