@@ -14,18 +14,24 @@ namespace Cinepipoca.ViewModels
     {
 
         private readonly IMoviesRepository _moviesRepository;
-        public MainPageViewModel(INavigationService navigationService, IMoviesRepository moviesRepository)
+        private readonly IGenresRepository _genresRepository;
+        public MainPageViewModel(INavigationService navigationService, IMoviesRepository moviesRepository, IGenresRepository genresRepository)
             : base(navigationService)
         {
             _moviesRepository = moviesRepository;
+            _genresRepository = genresRepository;
             Title = "Main Page";
 
+
+            //test
+            // exclude it
             var x = retornaDados();
         }
 
         private async Task retornaDados()
         {
-            await _moviesRepository.getUpcommingMovies(1);
+            await _moviesRepository.getUpcommingMovies(0);
+            //await _genresRepository.getMoviesGenres();
 
         }
     }

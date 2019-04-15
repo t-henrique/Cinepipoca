@@ -41,6 +41,8 @@ namespace Cinepipoca
         private void InitServices(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IMoviesRepository, MoviesRepository>();
+            containerRegistry.RegisterSingleton<IGenresRepository, GenresRepository>();
+            
         }
     }
 }

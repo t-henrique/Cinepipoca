@@ -13,34 +13,26 @@ using System.Threading.Tasks;
 
 namespace Cinepipoca.Repositories
 {
-    public class MoviesRepository : IMoviesRepository
+    public class MoviesRepository : RepositoryConfigInterface<IMoviesRoutes>, IMoviesRepository
     {
         private IMoviesRoutes moviesRoutes;
         public async Task<MovieResults> getUpcommingMovies(int page)
         {
-             moviesRoutes = RestService.For<IMoviesRoutes>(Config.UrlBase,
-                new RefitSettings
-                {
-                    ContentSerializer = new JsonContentSerializer(
-                        new JsonSerializerSettings
-                        {
-                            ContractResolver = new CamelCasePropertyNamesContractResolver()
-                        }
-                    )
-                }
-            );
+            moviesRoutes = returnRepositoryConfiguration();
 
             try
             {
                 var result = await moviesRoutes.GetUpcomingMovies(1, Config.Apikey);
 
-                return new MovieResults();
+               return result;
 
             }
             catch (Exception ex)
             {
-
-                throw new    NotImplementedException();
+                var result = new MovieResults();
+                result.statusCode = 500;
+                result.statusMessage = $"Aconteceu um erro com a sua solicitação: {ex.Message}";
+                return result;
             }
 
 
