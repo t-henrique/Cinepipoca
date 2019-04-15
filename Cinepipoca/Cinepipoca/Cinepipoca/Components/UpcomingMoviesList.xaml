@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Name="view"
+             x:Class="Cinepipoca.Components.UpcomingMoviesList"
+             xmlns:converters="clr-namespace:Cinepipoca.Components.Converters;assembly=Cinepipoca" >
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:GenresConverter x:Key="GenresConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Label Text="{Binding Foo, Source={x:Reference view}}" />
+    
+    <StackLayout
+            BackgroundColor="White"
+            Opacity="10"
+            Spacing="0">
+        
+        <Grid Padding="16,0,16,12"
+                RowSpacing="1">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Image
+                x:Name="Poster"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="3"
+                Margin="1,0"
+                Source="{Binding PosterPath}" />
+            
+             <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,16,0,0"
+                FontSize="14"
+                LineBreakMode="TailTruncation"
+                Text="{Binding Title, StringFormat='{0:60}'}"
+                TextColor="Black" /> 
+                
+             <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,16,0,0"
+                FontSize="14"
+                LineBreakMode="TailTruncation"
+                Text="{Binding Title, StringFormat='{0:60}'}"
+                TextColor="Black" /> 
+            
+            <Label
+                x:Name="BandeirinhaSituacao"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="-1"
+                IsVisible="{Binding Genres, Converter={StaticResource GenresConverter}}" />
+                
+
+        
+        </Grid>
+        
+        
+    
+    </StackLayout>
+</ContentView>
