@@ -11,4 +11,10 @@
     <PackageReference Include="Prism.Unity.Forms" Version="7.1.0.431" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Components\MoviesCustomList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
