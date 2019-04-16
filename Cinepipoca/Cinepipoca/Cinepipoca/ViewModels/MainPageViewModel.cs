@@ -16,11 +16,11 @@ namespace Cinepipoca.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
 
-        private ObservableCollection<Movie> _moviesItens;
-        public ObservableCollection<Movie> MoviesItens
+        private ObservableCollection<Movie> _moviesUpcomingItens;
+        public ObservableCollection<Movie> MoviesUpcomingItens
         {
-            get { return _moviesItens; }
-            set { SetProperty(ref _moviesItens, value); }
+            get { return _moviesUpcomingItens; }
+            set { SetProperty(ref _moviesUpcomingItens, value); }
         }
 
         private ObservableCollection<Genres> _genresDescriptions;
@@ -38,9 +38,9 @@ namespace Cinepipoca.ViewModels
         {
             _moviesRepository = moviesRepository;
             _genresRepository = genresRepository;
-            Title = "Main Page";
+            Title = "CinePipoca";
 
-            MoviesItens = new ObservableCollection<Movie>();
+            MoviesUpcomingItens = new ObservableCollection<Movie>();
             GenresDescriptions = new ObservableCollection<Genres>();
             //test
             // exclude it
@@ -64,7 +64,7 @@ namespace Cinepipoca.ViewModels
             {
                 foreach (var item in x.results)
                 {
-                    MoviesItens.Add(item);
+                    MoviesUpcomingItens.Add(item);
                 }
             }
         }

@@ -4,72 +4,101 @@
              x:Name="view"
              x:Class="Cinepipoca.Components.UpcomingMoviesList"
              xmlns:converters="clr-namespace:Cinepipoca.Components.Converters;assembly=Cinepipoca" >
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:GenresConverter x:Key="GenresConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <Label Text="{Binding Foo, Source={x:Reference view}}" />
-    
-    <StackLayout
-            BackgroundColor="White"
-            Opacity="10"
-            Spacing="0">
-        
-        <Grid Padding="16,0,16,12"
-                RowSpacing="1">
-            
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            
+
+
+    <Grid RowSpacing="3"
+          Margin="2,1"
+          BackgroundColor="White"
+          >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+
+        <StackLayout
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="3"
+            >
+
             <Image
                 x:Name="Poster"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="3"
-                Margin="1,0"
-                Source="{Binding PosterPath}" />
-            
-             <Label
-                Grid.Row="0"
-                Grid.Column="1"
-                Margin="0,16,0,0"
+                Source="{Binding PosterPath}" 
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Margin="3"
+                WidthRequest="90"
+                HeightRequest="110"/>
+
+        </StackLayout>
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            FontSize="Large"
+            BackgroundColor="Transparent"
+            FontAttributes="Bold"
+            Text="{Binding Title}"
+            HorizontalOptions="FillAndExpand"
+            TextColor="#af0001" />
+
+        <StackLayout 
+            Orientation="Vertical"
+            Grid.Row="1"
+            Grid.Column="1"
+            Spacing="2"
+            >
+
+            <Label
+                FontSize="14"
+                Text="Sinopse:"
+                TextColor="#e5ae21"
+                VerticalOptions="StartAndExpand"/>
+
+
+            <Label
                 FontSize="14"
                 LineBreakMode="TailTruncation"
-                Text="{Binding Title, StringFormat='{0:60}'}"
-                TextColor="Black" /> 
+                BackgroundColor="Transparent" 
+                Text="{Binding Overview}"
+                TextColor="Black"
+                VerticalOptions="StartAndExpand"/>
+
+        </StackLayout>
+        <StackLayout Orientation="Horizontal"
+                Grid.Row="2"
+                Grid.Column="1">
+            <Label
                 
-             <Label
+                FontSize="14"
+                FontAttributes="Bold"
+                Text="Lançamento:"
+                TextColor="#e5ae21"
+                VerticalOptions="StartAndExpand"/>
+            <Label
+                FontSize="14"
+                Text="{Binding ReleaseDate, StringFormat='{}{0:dd/MM/yyyy}' }"
+                TextColor="Black"
+                VerticalOptions="StartAndExpand"/>
+        </StackLayout>
+
+        <!--<Label
+                x:Name="Genres"
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="0,16,0,0"
-                FontSize="14"
-                LineBreakMode="TailTruncation"
-                Text="{Binding Title, StringFormat='{0:60}'}"
-                TextColor="Black" /> 
-            
-            <Label
-                x:Name="BandeirinhaSituacao"
-                Grid.Row="0"
-                Grid.Column="1"
-                Margin="-1"
-                IsVisible="{Binding Genres, Converter={StaticResource GenresConverter}}" />
-                
+                IsVisible="{Binding Genres, Converter={StaticResource GenresConverter}}" />-->
 
-        
-        </Grid>
-        
-        
-    
-    </StackLayout>
+    </Grid>
 </ContentView>

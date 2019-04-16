@@ -7,7 +7,11 @@
              Title="{Binding Title}">
 
     <ListView
-        ItemsSource="{Binding MoviesUpcoming, Mode=TwoWay}">
+        RowHeight="125"
+        ItemsSource="{Binding MoviesUpcomingItens, Mode=TwoWay}"
+        BackgroundColor="Black"
+        SeparatorColor="White"
+        >
         <ListView.Behaviors>
                 <behaviors:EventToCommandBehavior
                     Command="{Binding MovieItemSelectedCommand}"
@@ -15,9 +19,11 @@
                     EventName="ItemTapped" />
             </ListView.Behaviors>
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <control:UpcomingMoviesList Padding="10,5,10,5" />
+                <DataTemplate >
+                    <ViewCell >
+                        <control:UpcomingMoviesList 
+                            Margin="2,3"
+                            Padding="2,0"/>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
