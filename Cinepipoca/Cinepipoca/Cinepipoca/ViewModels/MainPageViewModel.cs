@@ -42,9 +42,15 @@ namespace Cinepipoca.ViewModels
 
             MoviesUpcomingItens = new ObservableCollection<Movie>();
             GenresDescriptions = new ObservableCollection<Genres>();
-            //test
-            // exclude it
-            loadBeginingData();
+
+            retrieveData();
+        }
+
+        private async void retrieveData()
+        {
+
+            await loadBeginingData();
+
         }
 
         private async Task loadBeginingData()

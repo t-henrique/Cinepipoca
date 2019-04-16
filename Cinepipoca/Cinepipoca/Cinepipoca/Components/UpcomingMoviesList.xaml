@@ -5,14 +5,7 @@
              x:Class="Cinepipoca.Components.UpcomingMoviesList"
              xmlns:converters="clr-namespace:Cinepipoca.Components.Converters;assembly=Cinepipoca" >
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:GenresConverter x:Key="GenresConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-
-
+   
     <Grid RowSpacing="3"
           Margin="2,1"
           BackgroundColor="White"
