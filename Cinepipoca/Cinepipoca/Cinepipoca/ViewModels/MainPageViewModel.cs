@@ -1,15 +1,18 @@
-﻿using Cinepipoca.Interfaces;
+﻿using Cinepipoca.Components;
+using Cinepipoca.Interfaces;
 using Cinepipoca.Models;
 using Cinepipoca.ValueObjects;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Cinepipoca.ViewModels
 {
@@ -33,17 +36,41 @@ namespace Cinepipoca.ViewModels
 
         private readonly IMoviesRepository _moviesRepository;
         private readonly IGenresRepository _genresRepository;
-        public MainPageViewModel(INavigationService navigationService, IMoviesRepository moviesRepository, IGenresRepository genresRepository)
-            : base(navigationService)
+        private readonly IPopupNavigation _popupNavigation;
+
+
+        public ICommand MovieItemSelectedCommand
+        {
+            get;
+            set;
+        }
+
+        public event EventHandler SelectedMovie;
+
+        public MainPageViewModel(INavigationService navigationService, 
+            IMoviesRepository moviesRepository, 
+            IGenresRepository genresRepository, 
+            IPopupNavigation popupNavigation): base(navigationService)
         {
             _moviesRepository = moviesRepository;
             _genresRepository = genresRepository;
+            _popupNavigation = popupNavigation;
+
+            MovieItemSelectedCommand = new DelegateCommand<Movie>(ShowDetailedMovie);
+
             Title = "CinePipoca";
 
             MoviesUpcomingItens = new ObservableCollection<Movie>();
             GenresDescriptions = new ObservableCollection<Genres>();
 
             retrieveData();
+        }
+
+        private async void ShowDetailedMovie(Movie movie)
+        {
+           //var vb = new MovieDetailsPopupPageViewModel();
+            //vb.Movie = movie;
+            await _popupNavigation.PushAsync(new MovieDetailsPopupPage(movie));
         }
 
         private async void retrieveData()

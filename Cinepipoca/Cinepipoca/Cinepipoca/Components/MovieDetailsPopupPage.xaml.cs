@@ -1,4 +1,7 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using Cinepipoca.Models;
+using Cinepipoca.ViewModels;
+using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +16,33 @@ namespace Cinepipoca.Components
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MovieDetailsPopupPage : PopupPage
 	{
-		public MovieDetailsPopupPage ()
-		{
-			InitializeComponent ();
-		}
+        public MovieDetailsPopupPageViewModel ViewModel
+        {
+            get
+            {
+                return (MovieDetailsPopupPageViewModel)BindingContext;
+            }
+        }
+
+        public MovieDetailsPopupPage (Movie movie)
+        {
+            InitializeComponent ();
+            Movies = movie;
+            this.BindingContext = Movies;
+        }
+
+        private Movie _movie;
+        public Movie Movies
+        {
+            get { return _movie; }
+            set { _movie = value; }
+        }
+
+        private async void OnClosePopupPage(object sender, System.EventArgs e)
+        {
+            await Navigation.PopPopupAsync();
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

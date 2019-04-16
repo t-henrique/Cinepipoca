@@ -71,6 +71,9 @@
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2.1" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.1.0.431" />
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>1.1.5.188</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -100,7 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cinepipoca\Cinepipoca.csproj">
-      <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
+      <Project>{F58D1945-9963-4225-98FD-B3CA97F71DC2}</Project>
       <Name>Cinepipoca</Name>
     </ProjectReference>
   </ItemGroup>

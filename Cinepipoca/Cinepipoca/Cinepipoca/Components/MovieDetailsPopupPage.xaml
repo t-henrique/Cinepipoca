@@ -1,9 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-             x:Class="Cinepipoca.Components.MovieDetailsPopupPage">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"    
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="Cinepipoca.Components.MovieDetailsPopupPage"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Padding="20,35"
+             >
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation 
             PositionIn="Center"
@@ -18,18 +22,20 @@
     </pages:PopupPage.Animation>
 
     <Grid RowSpacing="3"
-        Margin="2,1"
+        Margin="10,0"
         BackgroundColor="White"
         >
     
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <StackLayout
@@ -44,63 +50,64 @@
                 Source="{Binding PosterPath}" 
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-                Margin="3"
-                WidthRequest="90"
-                HeightRequest="110"
+                Margin="0,5"
+                WidthRequest="180"
+                HeightRequest="220"
                 />
-
-        
+                
         <Label
             FontSize="Large"
             BackgroundColor="Transparent"
             FontAttributes="Bold"
             Text="{Binding Title}"
+                HorizontalTextAlignment="Center"
             HorizontalOptions="CenterAndExpand"
             TextColor="#af0001" />
         </StackLayout>
-
-        <StackLayout 
-            Orientation="Vertical"
+        <ScrollView
             Grid.Row="1"
             Grid.Column="0"
-            Spacing="2"
+            Grid.ColumnSpan="3"
+            Margin="6"
             >
+            <StackLayout 
+                Orientation="Vertical"
+                Margin="10,0"
+                
+                >
 
-            <Label
-                FontSize="14"
-                Text="Sinopse:"
-                TextColor="#e5ae21"
-                VerticalOptions="StartAndExpand"/>
-
-
-            <Label
-                FontSize="14"
-                LineBreakMode="TailTruncation"
-                BackgroundColor="Transparent" 
-                Text="{Binding Overview}"
-                TextColor="Black"
-                VerticalOptions="StartAndExpand"/>
-
-        </StackLayout>
-
+                <Label
+                    FontSize="14"
+                    Text="Sinopse:"
+                    FontAttributes="Bold"
+                    TextColor="#e5ae21"
+                    VerticalOptions="StartAndExpand"/>
+                    
+                <Label
+                    FontSize="14"
+                    LineBreakMode="WordWrap"
+                    BackgroundColor="Transparent" 
+                    Text="{Binding Overview}"
+                    TextColor="Black"
+                    VerticalOptions="StartAndExpand"/>
+            </StackLayout>
+        </ScrollView>
         
         <StackLayout 
             Orientation="Vertical"
             Grid.Row="2"
             Grid.Column="0"
-            Spacing="2"
             >
 
             <Image
                 BackgroundColor="#e5ae21"
                 VerticalOptions="Center"/>
-
-
+                
             <Label
                 FontSize="14"
                 LineBreakMode="TailTruncation"
                 BackgroundColor="Transparent" 
-                Text="ESTRELA"
+                Text="Estrela"
                 TextColor="Black"
                 VerticalOptions="StartAndExpand"/>
         </StackLayout>
@@ -109,13 +116,12 @@
             Orientation="Vertical"
             Grid.Row="2"
             Grid.Column="1"
-            Spacing="2"
+
             >
 
             <Image
                 BackgroundColor="#e5ae21"
                 VerticalOptions="Center"/>
-
 
             <Label
                 FontSize="14"
@@ -130,7 +136,6 @@
             Orientation="Vertical"
             Grid.Row="2"
             Grid.Column="2"
-            Spacing="2"
             >
 
             <Image
@@ -146,7 +151,22 @@
                 TextColor="Black"
                 VerticalOptions="StartAndExpand"/>
         </StackLayout>
+        
 
+        <Button 
+            Grid.Row="3"
+            Grid.Column="1"
+            Text="Fechar"
+            TextColor="Red"
+            BackgroundColor="Transparent"
+            BorderColor="Red"
+            BorderWidth="2"
+            Clicked="OnClosePopupPage"
+            BorderRadius="3"
+            HeightRequest="10"
+            Margin="2"
+        />
     </Grid>
+    
     
 </pages:PopupPage>

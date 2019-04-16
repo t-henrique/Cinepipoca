@@ -7,6 +7,8 @@ using Xamarin.Forms.Xaml;
 using System;
 using Cinepipoca.Interfaces;
 using Cinepipoca.Repositories;
+using Rg.Plugins.Popup.Contracts;
+using Rg.Plugins.Popup.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Cinepipoca
@@ -42,6 +44,7 @@ namespace Cinepipoca
         {
             containerRegistry.RegisterSingleton<IMoviesRepository, MoviesRepository>();
             containerRegistry.RegisterSingleton<IGenresRepository, GenresRepository>();
+            containerRegistry.RegisterInstance<IPopupNavigation>(PopupNavigation.Instance);
             
         }
     }
