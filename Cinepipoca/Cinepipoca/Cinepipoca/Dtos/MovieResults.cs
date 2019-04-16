@@ -1,4 +1,5 @@
 ﻿using Cinepipoca.Models;
+using Newtonsoft.Json;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace Cinepipoca.Dtos
     {
         public override List<Movie> results { get; set; }
         public int Page { get; set; }
-        [AliasAs("total_results")]
+        [JsonProperty("total_results")]
         public int TotalResults { get; set; }
-        [AliasAs("total_pages")]
+        [JsonProperty("total_pages")]
         public int TotalPages { get; set; }
     }
 }
