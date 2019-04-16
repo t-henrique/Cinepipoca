@@ -29,7 +29,7 @@ namespace Cinepipoca.Components
 			
 			MyListView.ItemsSource = Items;
 
-            MyListView.ItemTemplate = new DataTemplate(typeof(CustomCell));
+          //  MyListView.ItemTemplate = new DataTemplate(typeof(CustomCell));
 
         }
 

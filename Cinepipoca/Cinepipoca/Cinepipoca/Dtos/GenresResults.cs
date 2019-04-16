@@ -10,7 +10,7 @@ namespace Cinepipoca.Dtos
     { 
         [AliasAs("genres")]
         public List<Genres> genres { get; set; }
-        [AliasAs("genres")]
+
         public override List<Genres> results { get; set; }
     }
 }
