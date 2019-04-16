@@ -50,6 +50,7 @@ namespace Cinepipoca.ViewModels
         private async Task loadBeginingData()
         {
 
+            //code commented because it's not working anymore.
             //var y = _genresRepository.getMoviesGenres();
             //if (y.Result != null)
             //{

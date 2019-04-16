@@ -1,4 +1,5 @@
-﻿using Refit;
+﻿using Newtonsoft.Json;
+using Refit;
 using System.Collections.Generic;
 
 namespace Cinepipoca.Dtos
@@ -6,9 +7,9 @@ namespace Cinepipoca.Dtos
     public abstract class BaseReturn <T>
     {
         public abstract List<T> results { get; set; }
-        [AliasAs("status_message")]
+        [JsonProperty("status_message")]
         public string statusMessage { get; set; }
-        [AliasAs("status_code")]
+        [JsonProperty("status_code")]
         public int statusCode { get; set; }
     }
 }

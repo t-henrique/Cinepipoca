@@ -1,4 +1,5 @@
-﻿using Refit;
+﻿using Newtonsoft.Json;
+using Refit;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,12 +11,12 @@ namespace Cinepipoca.Models
         public int Id { get; set; }
 
         
-        [AliasAs("Poster_Path")]
+        [JsonProperty("Poster_Path")]
         public string PosterPath { get; set; }
         
         public Boolean Adult { get; set; }
         public string Overview { get; set; }
-        [AliasAs("Release_Date")]
+        [JsonProperty("Release_Date")]
         public string ReleaseDate { get; set; }
         public string OriginalTitle { get; set; }
         public string Title { get; set; }
