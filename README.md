@@ -19,3 +19,5 @@ This app was designed with Xamarin.Framework and some third party plugins to off
 
 Below, you can see some Cinepipoca screenshots:
 
+![](https://github.com/t-henrique/Cinepipoca/blob/readmeUpdate/Screenshots/Cinepipoca1.png)
+![](https://github.com/t-henrique/Cinepipoca/blob/readmeUpdate/Screenshots/Cinepipoca2.png)
