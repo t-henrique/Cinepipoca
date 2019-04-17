@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms.Extended;
 
 namespace Cinepipoca.ViewModels
 {
@@ -26,6 +27,13 @@ namespace Cinepipoca.ViewModels
             set { SetProperty(ref _moviesUpcomingItens, value); }
         }
 
+        public InfiniteScrollCollection<Movie> _movies;
+        public InfiniteScrollCollection<Movie> Movies
+        {
+            get => _movies;
+            set => _movies = value;
+        }
+
         private ObservableCollection<Genres> _genresDescriptions;
         public ObservableCollection<Genres> GenresDescriptions
         {
@@ -33,6 +41,7 @@ namespace Cinepipoca.ViewModels
             set { SetProperty(ref _genresDescriptions, value); }
         }
 
+        private int pageCount = 1;
 
         private readonly IMoviesRepository _moviesRepository;
         private readonly IGenresRepository _genresRepository;
@@ -75,30 +84,57 @@ namespace Cinepipoca.ViewModels
 
         private async void retrieveData()
         {
+            //await loadBeginingData();
 
-            await loadBeginingData();
-
+            await loadMovies();
         }
 
         private async Task loadBeginingData()
         {
-
-            //code commented because it's not working anymore.
-            //var y = _genresRepository.getMoviesGenres();
-            //if (y.Result != null)
-            //{
-            //    foreach (var item in y.Result.genres)
-            //    {
-            //        GenresDescriptions.Add(item);
-            //    }
-            //}
-            var x = await _moviesRepository.getUpcommingMovies(0);
+            
+            var x = await _moviesRepository.getUpcommingMovies(pageCount);
             if (x.results != null)
             {
                 foreach (var item in x.results)
                 {
                     MoviesUpcomingItens.Add(item);
                 }
+            }
+        }
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private async Task loadMovies()
+        {
+            Movies = new InfiniteScrollCollection<Movie>
+            {
+                OnLoadMore = async () =>
+                {
+                    IsBusy = true;
+                    pageCount += 1;
+                    var items = await _moviesRepository.getUpcommingMovies(pageCount);
+                    IsBusy = false;
+                    return items.results;
+                },
+                OnCanLoadMore = () => Movies.Count < 220
+            };
+            DownloadDataAsync();
+        }
+        private async Task DownloadDataAsync()
+        {
+            var x = await _moviesRepository.getUpcommingMovies(pageCount);
+            if (x.results != null)
+            {
+                Movies.AddRange(x.results);
             }
         }
     }

@@ -4,11 +4,13 @@
              x:Class="Cinepipoca.Views.MainPage"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:control="clr-namespace:Cinepipoca.Components;assembly=Cinepipoca"
+             xmlns:extended="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              Title="{Binding Title}">
 
+        <!--ItemsSource="{Binding MoviesUpcomingItens, Mode=TwoWay}"-->
     <ListView
         RowHeight="125"
-        ItemsSource="{Binding MoviesUpcomingItens, Mode=TwoWay}"
+        ItemsSource="{Binding Movies, Mode=TwoWay}"
         BackgroundColor="Black"
         SeparatorColor="White"
         >
@@ -17,7 +19,8 @@
                     Command="{Binding MovieItemSelectedCommand}"
                     EventArgsParameterPath="Item"
                     EventName="ItemTapped" />
-            </ListView.Behaviors>
+            <extended:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
+        </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <ViewCell >

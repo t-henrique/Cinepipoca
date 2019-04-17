@@ -22,7 +22,7 @@ namespace Cinepipoca.Repositories
 
             try
             {
-                var result = await moviesRoutes.GetUpcomingMovies(1, Config.Apikey);
+               var result = await moviesRoutes.GetUpcomingMovies(page, Config.Apikey);
 
                return result;
 
