@@ -6,8 +6,9 @@
     x:Class="Cinepipoca.Components.MovieDetailsPopupPage"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True"
-    Padding="20,35"
-             >
+    Padding="20"
+    >
+    
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation 
             PositionIn="Center"
@@ -22,7 +23,7 @@
     </pages:PopupPage.Animation>
 
     <Grid RowSpacing="3"
-        Margin="10,0"
+        Padding="8,0"
         BackgroundColor="White"
         >
     
@@ -43,16 +44,16 @@
             Grid.Column="0"
             Grid.ColumnSpan="3"
             Orientation="Vertical"
-            >
+        >
 
             <Image
                 x:Name="Poster"
                 Source="{Binding PosterPath}" 
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-                Margin="0,5"
-                WidthRequest="180"
-                HeightRequest="220"
+                Margin="0,15,0,5"
+                WidthRequest="200"
+                HeightRequest="240"
                 />
                 
         <Label
@@ -60,20 +61,19 @@
             BackgroundColor="Transparent"
             FontAttributes="Bold"
             Text="{Binding Title}"
-                HorizontalTextAlignment="Center"
+            HorizontalTextAlignment="Center"
             HorizontalOptions="CenterAndExpand"
             TextColor="#af0001" />
         </StackLayout>
+        
         <ScrollView
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="3"
-            Margin="6"
+            Margin="10,8"
             >
             <StackLayout 
-                Orientation="Vertical"
-                Margin="10,0"
-                
+                Orientation="Vertical"                
                 >
 
                 <Label
@@ -93,15 +93,18 @@
             </StackLayout>
         </ScrollView>
         
-        <StackLayout 
+        <!--<StackLayout 
             Orientation="Vertical"
             Grid.Row="2"
             Grid.Column="0"
             >
 
             <Image
-                BackgroundColor="#e5ae21"
-                VerticalOptions="Center"/>
+                
+                Source="star.png"
+                WidthRequest="25"
+                HeightRequest="25"
+                VerticalOptions="Start"/>
                 
             <Label
                 FontSize="14"
@@ -109,14 +112,13 @@
                 BackgroundColor="Transparent" 
                 Text="Estrela"
                 TextColor="Black"
-                VerticalOptions="StartAndExpand"/>
+                VerticalOptions="Center"/>
         </StackLayout>
 
         <StackLayout 
             Orientation="Vertical"
             Grid.Row="2"
             Grid.Column="1"
-
             >
 
             <Image
@@ -133,15 +135,18 @@
         </StackLayout>
 
         <StackLayout 
-            Orientation="Vertical"
+           
             Grid.Row="2"
             Grid.Column="2"
             >
 
             <Image
-                BackgroundColor="#e5ae21"
-                VerticalOptions="Center"/>
-
+                
+                WidthRequest="25"
+                HeightRequest="25"
+                Source="rating"
+                
+                />
 
             <Label
                 FontSize="14"
@@ -149,8 +154,8 @@
                 BackgroundColor="Transparent" 
                 Text="nota"
                 TextColor="Black"
-                VerticalOptions="StartAndExpand"/>
-        </StackLayout>
+                HorizontalOptions="Center"/>
+        </StackLayout>-->
         
 
         <Button 
@@ -163,10 +168,9 @@
             BorderWidth="2"
             Clicked="OnClosePopupPage"
             BorderRadius="3"
-            HeightRequest="10"
-            Margin="2"
+            HeightRequest="40"
+            Margin="0,0,0,20"
         />
     </Grid>
-    
     
 </pages:PopupPage>
