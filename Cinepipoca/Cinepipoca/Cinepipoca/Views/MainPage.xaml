@@ -30,6 +30,18 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
+        <ListView.Footer>
+            <Grid 
+                Padding="5"
+                Margin="10"
+                IsVisible="{Binding IsBusy}">
+                <Label Text="Carregando..." 
+                       TextColor="White"
+                       FontSize="Large"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+            </Grid>
+        </ListView.Footer>
     </ListView>
 
 </ContentPage>
