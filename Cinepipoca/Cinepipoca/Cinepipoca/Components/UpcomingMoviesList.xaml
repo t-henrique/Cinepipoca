@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Name="view"
+             x:Class="Cinepipoca.Components.UpcomingMoviesList"
+             xmlns:converters="clr-namespace:Cinepipoca.Components.Converters;assembly=Cinepipoca" >
+
+   
+    <Grid RowSpacing="3"
+          Margin="2,1"
+          BackgroundColor="White"
+          >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+
+        <StackLayout
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="3"
+            >
+
+            <Image
+                x:Name="Poster"
+                Source="{Binding PosterPath}" 
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Margin="3"
+                WidthRequest="90"
+                HeightRequest="110"/>
+
+        </StackLayout>
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            FontSize="Large"
+            BackgroundColor="Transparent"
+            FontAttributes="Bold"
+            Text="{Binding Title}"
+            HorizontalOptions="FillAndExpand"
+            TextColor="#af0001" />
+
+        <StackLayout 
+            Orientation="Vertical"
+            Grid.Row="1"
+            Grid.Column="1"
+            Spacing="2"
+            >
+
+            <Label
+                FontSize="14"
+                Text="Sinopse:"
+                TextColor="#e5ae21"
+                VerticalOptions="StartAndExpand"/>
+
+
+            <Label
+                FontSize="14"
+                LineBreakMode="TailTruncation"
+                BackgroundColor="Transparent" 
+                Text="{Binding Overview}"
+                TextColor="Black"
+                VerticalOptions="StartAndExpand"/>
+
+        </StackLayout>
+        <StackLayout Orientation="Horizontal"
+                Grid.Row="2"
+                Grid.Column="1">
+            <Label
+                
+                FontSize="14"
+                FontAttributes="Bold"
+                Text="Lançamento:"
+                TextColor="#e5ae21"
+                VerticalOptions="StartAndExpand"/>
+            <Label
+                FontSize="14"
+                Text="{Binding ReleaseDate, StringFormat='{}{0:dd/MM/yyyy}' }"
+                TextColor="Black"
+                VerticalOptions="StartAndExpand"/>
+        </StackLayout>
+
+        <!--<Label
+                x:Name="Genres"
+                Grid.Row="1"
+                Grid.Column="1"
+                IsVisible="{Binding Genres, Converter={StaticResource GenresConverter}}" />-->
+
+    </Grid>
+</ContentView>

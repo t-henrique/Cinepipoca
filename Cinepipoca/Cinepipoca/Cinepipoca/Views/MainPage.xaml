@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cinepipoca.Views.MainPage"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:control="clr-namespace:Cinepipoca.Components;assembly=Cinepipoca"
+             xmlns:extended="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             Title="{Binding Title}">
+
+        <!--ItemsSource="{Binding MoviesUpcomingItens, Mode=TwoWay}"-->
+    <ListView
+        RowHeight="125"
+        ItemsSource="{Binding Movies, Mode=TwoWay}"
+        BackgroundColor="Black"
+        SeparatorColor="White"
+        >
+        <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior
+                    Command="{Binding MovieItemSelectedCommand}"
+                    EventArgsParameterPath="Item"
+                    EventName="ItemTapped" />
+            <extended:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
+        </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <ViewCell >
+                        <control:UpcomingMoviesList 
+                            Margin="2,3"
+                            Padding="2,0"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        <ListView.Footer>
+            <Grid 
+                Padding="5"
+                Margin="10"
+                IsVisible="{Binding IsBusy}">
+                <Label Text="Carregando..." 
+                       TextColor="White"
+                       FontSize="Large"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+            </Grid>
+        </ListView.Footer>
+    </ListView>
+
+</ContentPage>
